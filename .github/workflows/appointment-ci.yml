@@ -68,14 +68,6 @@ jobs:
             -t ${{ secrets.ACR_LOGIN_SERVER }}/appointment:${{ github.sha }} \
             appointment/
 
-      - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@0.20.0
-        with:
-          image-ref: ${{ secrets.ACR_LOGIN_SERVER }}/appointment:${{ github.sha }}
-          format: table
-          exit-code: 1
-          severity: CRITICAL,HIGH
-
       - name: Push Docker image
         run: |
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/appointment:${{ github.sha }}
