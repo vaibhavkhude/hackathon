@@ -55,7 +55,7 @@ jobs:
 
       - name: Run Checkov on Terraform code
         working-directory: terraform
-        run: checkov -d . --terraform --skip-check CKV_AZURE_1
+        run: checkov -d . --skip-check CKV_AZURE_1
 
       - name: Terraform Plan
         working-directory: terraform
