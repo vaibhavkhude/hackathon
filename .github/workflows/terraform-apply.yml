@@ -47,6 +47,15 @@ jobs:
       - name: Terraform Validate
         working-directory: terraform
         run: terraform validate
+        
+      - name: Install Checkov
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install checkov
+
+      - name: Run Checkov on Terraform code
+        working-directory: terraform
+        run: checkov -d . --terraform --skip-check CKV_AZURE_1
 
       - name: Terraform Plan
         working-directory: terraform
