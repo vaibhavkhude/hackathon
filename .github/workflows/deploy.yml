@@ -36,19 +36,19 @@ jobs:
         docker build -t $IMAGE_PREFIX/appointment-service:latest ./appointment-service
         docker push $IMAGE_PREFIX/appointment-service:latest
 
-    # Set up kubectl
-    - name: Set up Kubectl
-      uses: azure/setup-kubectl@v3
+    # # Set up kubectl
+    # - name: Set up Kubectl
+    #   uses: azure/setup-kubectl@v3
 
-    # Configure Kubeconfig
-    - name: Configure Kubeconfig
-      run: |
-        echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
-        export KUBECONFIG=$PWD/kubeconfig
+    # # Configure Kubeconfig
+    # - name: Configure Kubeconfig
+    #   run: |
+    #     echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
+    #     export KUBECONFIG=$PWD/kubeconfig
 
-    # Deploy to Kubernetes
-    - name: Deploy to K8s
-      run: |
-        kubectl apply -f k8s/
-        kubectl rollout restart deployment patient-service
-        kubectl rollout restart deployment appointment-service
+    # # Deploy to Kubernetes
+    # - name: Deploy to K8s
+    #   run: |
+    #     kubectl apply -f k8s/
+    #     kubectl rollout restart deployment patient-service
+    #     kubectl rollout restart deployment appointment-service
